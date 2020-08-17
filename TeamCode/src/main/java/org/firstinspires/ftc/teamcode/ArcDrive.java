@@ -6,10 +6,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name="TankDrive")
-public class TankDrive extends OpMode {
+@TeleOp(name="ArcDrive")
+public class ArcDrive extends OpMode {
 
     private DcMotor middleMotor;
+
     private DcMotor rightMotor;
     private DcMotor leftMotor;
 
