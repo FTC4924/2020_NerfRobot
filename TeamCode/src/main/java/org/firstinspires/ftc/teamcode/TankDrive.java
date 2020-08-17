@@ -9,25 +9,25 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 @TeleOp(name="TankDrive")
 public class TankDrive extends OpMode {
 
-    DcMotor rightMotor;
-    DcMotor leftMotor;
-    DcMotor middleWheelMotor;
+    private DcMotor middleMotor;
+    private DcMotor rightMotor;
+    private DcMotor leftMotor;
 
-    double leftPower;
-    double rightPower;
+    private double middlePower;
+    private double leftPower;
+    private double rightPower;
 
-    double gamepad1LeftStickY;
-    double gamepad1LeftStickX;
-    double gamepad1RightStickX;
-    double gamepad1RightStickY;
+    private double gamepad1LeftStickY;
+    private double gamepad1LeftStickX;
+    private double gamepad1RightStickX;
+    private double gamepad1RightStickY;
 
     @Override
     public void init() {
 
+        middleMotor = hardwareMap.get(DcMotor.class, "middleWheelMotor");
         rightMotor = hardwareMap.get(DcMotor.class, "rightMotor");
         leftMotor = hardwareMap.get(DcMotor.class, "leftMotor");
-        middleWheelMotor = hardwareMap.get(DcMotor.class, "middleWheelMotor");
-
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
@@ -35,17 +35,18 @@ public class TankDrive extends OpMode {
     @Override
     public void loop() {
 
+        middlePower = 0;
         leftPower = 0;
         rightPower = 0;
 
-        gamepad1LeftStickY = gamepad1.left_stick_y;
         gamepad1LeftStickX = gamepad1.left_stick_x;
-        gamepad1RightStickX = gamepad1.right_stick_x;
-        gamepad1RightStickX /= 2;
+        gamepad1LeftStickY = gamepad1.left_stick_y;
+        gamepad1RightStickX = gamepad1.right_stick_x / 2;
+        gamepad1RightStickY = gamepad1.right_stick_y;
 
         if(gamepad1LeftStickX > 0.05 || gamepad1LeftStickX < -.05) {
 
-            middleWheelMotor.setPower(gamepad1LeftStickX);
+            middlePower = gamepad1LeftStickX;
         }
 
         if(gamepad1LeftStickY > 0.05 || gamepad1LeftStickY < -.05) {
@@ -91,9 +92,10 @@ public class TankDrive extends OpMode {
             }
         }
 
-
+        middleMotor.setPower(middlePower);
         leftMotor.setPower(leftPower);
         rightMotor.setPower(rightPower);
+        telemetry.addData("middlePower", middlePower);
         telemetry.addData("leftPower", leftPower);
         telemetry.addData("rightPower", rightPower);
     }
