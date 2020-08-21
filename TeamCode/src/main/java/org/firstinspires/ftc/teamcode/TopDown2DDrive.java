@@ -52,9 +52,9 @@ public class TopDown2DDrive extends OpMode {
 
         }
 
-        middleWheelMotor.setPower(powers[1]);
-        rightMotor.setPower(powers[0]);
-        leftMotor.setPower(powers[0]);
+        middleWheelMotor.setPower(powers[0]);
+        rightMotor.setPower(powers[1]);
+        leftMotor.setPower(powers[1]);
 
     }
 
@@ -101,23 +101,23 @@ public class TopDown2DDrive extends OpMode {
 
         if(degrees >= -45 && degrees <= 45) {
 
-            x = Math.tan(-radians);
-            y = 1;
+            x = 1;
+            y = Math.tan(-radians);
 
         } else if (degrees > 45 && degrees <= 135) {
 
-            x = -1;
-            y = Math.tan(-radians + Math.toRadians(90));
+            x = Math.tan(-radians + Math.toRadians(90));
+            y = -1;
 
         } else if (degrees >= -135 && degrees < -45) {
 
-            x = 1;
-            y = Math.tan(radians + Math.toRadians(90));
+            x = Math.tan(radians + Math.toRadians(90));
+            y = 1;
 
         } else {
 
-            x = Math.tan(radians);
-            y = -1;
+            x = -1;
+            y = Math.tan(radians);
 
         }
 
