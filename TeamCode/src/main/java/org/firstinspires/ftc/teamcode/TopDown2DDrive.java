@@ -52,9 +52,9 @@ public class TopDown2DDrive extends OpMode {
 
         }
 
+        middleWheelMotor.setPower(powers[1]);
         rightMotor.setPower(powers[0]);
         leftMotor.setPower(powers[0]);
-        middleWheelMotor.setPower(powers[1]);
 
     }
 

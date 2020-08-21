@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class ArcDrive extends OpMode {
 
     private DcMotor middleMotor;
-
     private DcMotor rightMotor;
     private DcMotor leftMotor;
 
